@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.skillbridge.dao.DBConnection;
+import com.skillbridge.dao.UserDAO;
+import com.skillbridge.model.UserModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -21,6 +24,7 @@ public class RegisterServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//for testing, printing on console
 		System.out.println("Servlet is working");
 		
 		String username=request.getParameter("username");
@@ -31,18 +35,19 @@ public class RegisterServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 
-		
+		//for testing, printing data on console
 		System.out.println(username+" : "+firstname+" : "+lastname);
 		System.out.println(email+" : "+mobile);
 		
 		//To send response back to browser
+		//response either in text/html format
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 	
 		
 		//Server side Validations: Check empty fields
 		if (username == null || username.trim().isEmpty()) {
-		    out.println("Username is required");
+		    out.println("Username is required");//response in text format
 		    return;
 		}
 
@@ -86,10 +91,11 @@ public class RegisterServlet extends HttpServlet {
 	        if (!email.matches(regex)) {
 	            
 	            out.println("Invalid Email");
+	            return;
 	        }
 		
 		// Validate mobile number
-		if (!mobile.matches("[7-9][0-9]{9}")) {
+		if (!mobile.matches("[6-9][0-9]{9}")) {
 		    out.println("Invalid mobile number");
 		    return;
 		}
@@ -105,25 +111,25 @@ public class RegisterServlet extends HttpServlet {
 			return;
 		}
 		
-		String query="insert into users(username,first_name,last_name,email,mobile,password) values(?,?,?,?,?,?)";
-			try {
-			
-			Connection con=DBConnection.getConnection();
-			
-			PreparedStatement ps=con.prepareStatement(query);			
-			ps.setString(1, username);
-			ps.setString(2, firstname);
-			ps.setString(3, lastname);
-			ps.setString(4, email);
-			ps.setString(5, mobile);
-			ps.setString(6, password);
-			
-			int rows=ps.executeUpdate();
-			if(rows>0)
-				out.println("<h2>Registration Successful</h2>");
-			
+		try {
+				UserModel um=new UserModel(username,firstname,lastname,email,mobile,password);
+				UserDAO ud=new UserDAO();
+				boolean status=ud.insertData(um);
+				if(status)
+				{
+					//out.println("<h2>Registration Successful</h2>");//response in html format
+					
+					    out.println("<div class='container mt-5 text-center'>");
+					    out.println("<h2 class='text-success'>Registration Successful!</h2>");
+					    out.println("<p>You can now login to SkillBridge.</p>");
+					    out.println("<a href='login.html' class='btn btn-primary'>Go to Login</a>");
+					    out.println("</div>");
+					
+					
+				}	
 		}
-		//Duplicate username,email,mobile handling
+		//Duplicate username,email,mobile number handling
+		//specific
 		catch (SQLIntegrityConstraintViolationException e) {
 
 		    String message = e.getMessage();
@@ -142,9 +148,11 @@ public class RegisterServlet extends HttpServlet {
 		    }
 
 		}
+		//General exception
 		catch(SQLException e)
 		{
 			e.printStackTrace();
+			out.println("Database error occurred");
 		}
 	
 		
