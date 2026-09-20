@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import com.skillbridge.dao.UserDAO;
+import com.skillbridge.model.UserModel;
 
 
 @WebServlet("/LoginServlet")
@@ -24,24 +25,32 @@ public class LoginServlet extends HttpServlet {
 		  response.setContentType("text/html");
 		  PrintWriter out = response.getWriter();
 		  
-		String username=request.getParameter("username");
+		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		
-		 System.out.println(username);
+		 System.out.println(email);
 	     System.out.println(password);
 
 	    // out.println("<h2>Login data received</h2>");
 	     try {
 	    	 
 	    	 UserDAO uo=new UserDAO();
-	    	 boolean status=uo.loginUser(username, password);
+	    	 UserModel um=new UserModel();
+	    	 
+	    	
+	    	 boolean status=uo.loginUser(email, password);
+
+    		// request.setAttribute("email", email);
 	    	 if(status)
 	    	 {
-	    		 out.println("<h2>Login Successful</h2>");
-	    		// HttpSession session=request.getSession();
-	    		 //session.setAttribute("username", username);
+	    		 um=uo.findUserbByemail(email);
+	    		 System.out.println("Login Successful");
+	    		 HttpSession session=request.getSession();
+	    		 session.setAttribute("email", email);
+	    		 session.setAttribute("username", um.getUsername());
+	    		 response.sendRedirect("dashboard.jsp");
 	    	 } else {
-	    	        out.println("<h2>Invalid Username or Password</h2>");
+	    	        out.println("<h2>Invalid Email or Password</h2>");
 	    	    }
 	    	 
 	    	 

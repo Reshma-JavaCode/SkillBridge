@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -196,7 +198,7 @@
 
                     Already have an account?
 
-                    <a href="login.html">
+                    <a href="login.jsp">
                         Login
                     </a>
 

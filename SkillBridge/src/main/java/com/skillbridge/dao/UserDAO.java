@@ -10,13 +10,14 @@ import com.skillbridge.model.UserModel;
 
 public class UserDAO {
 
+	boolean status=false;
+	
 	
 	public boolean insertData(UserModel um)throws SQLException
 	{
 		//DBConnection db = new DBConnection();
 		//Connection con = null;
 		String query="insert into users(username,first_name,last_name,email,mobile,password) values(?,?,?,?,?,?)";
-		boolean status=false;
 		
 		
 		//try with resource
@@ -43,15 +44,15 @@ public class UserDAO {
 	
 
 	//Login method
-	public boolean loginUser(String username,String password)throws SQLException
+	public boolean loginUser(String email,String password)throws SQLException
 	{
-		boolean status=false;
-		String query="select username,password from users where username=? and password=?";
+		//boolean status=false;
+		String query="select email,password from users where email=? and password=?";
 		try(Connection con=DBConnection.getConnection();
 				
 			PreparedStatement ps=con.prepareStatement(query))
 			{
-				ps.setString(1, username);
+				ps.setString(1, email);
 				ps.setString(2, password);
 				try(ResultSet rs=ps.executeQuery()){
 				if(rs.next())
@@ -63,6 +64,41 @@ public class UserDAO {
 			}
 		
 		return status;
+	}
+	
+	public UserModel findUserbByemail(String email) 
+	{
+		String query="select * from users where email=?";
+		UserModel u=null;
+		try{
+			Connection con=DBConnection.getConnection();
+		
+				
+			PreparedStatement ps=con.prepareStatement(query);
+				ps.setString(1, email);
+				
+				
+			ResultSet rs=ps.executeQuery();
+			
+				if(rs.next())
+				{
+					u=new UserModel();
+					u.setUsername(rs.getString("username"));
+					u.setFirstname(rs.getString("firstname"));
+					u.setLastname(rs.getString("lastname"));
+					u.setMobile(rs.getString("mobile"));
+					u.setEmail(email);
+					u.setPassword(rs.getString("password"));
+					
+				}
+				
+			}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return u;
 	}
 
 }

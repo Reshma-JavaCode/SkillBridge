@@ -1,5 +1,6 @@
 package com.skillbridge.servlet;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -117,15 +118,17 @@ public class RegisterServlet extends HttpServlet {
 				boolean status=ud.insertData(um);
 				if(status)
 				{
+					System.out.println("Registration succesfull");
 					//out.println("<h2>Registration Successful</h2>");//response in html format
 					
-					    out.println("<div class='container mt-5 text-center'>");
+					  /*  out.println("<div class='container mt-5 text-center'>");
 					    out.println("<h2 class='text-success'>Registration Successful!</h2>");
 					    out.println("<p>You can now login to SkillBridge.</p>");
-					    out.println("<a href='login.html' class='btn btn-primary'>Go to Login</a>");
-					    out.println("</div>");
+					    out.println("<a href='login.jsp' class='btn btn-primary'>Go to Login</a>");
+					    out.println("</div>");*/
 					
-					
+					RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+					rd.forward(request, response);
 				}	
 		}
 		//Duplicate username,email,mobile number handling

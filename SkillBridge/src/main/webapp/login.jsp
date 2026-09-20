@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -68,18 +70,18 @@
 
                 <div class="mb-3">
 
-                    <label for="username"
+                    <label for="email"
                            class="form-label">
 
-                        Username
+                        Email
 
                     </label>
 
                     <input type="text"
                            class="form-control"
-                           id="username"
-                           name="username"
-                           placeholder="Enter username"
+                           id="email"
+                           name="email"
+                           placeholder="Enter email"
                            required>
 
                 </div>
@@ -122,7 +124,7 @@
 
                     Don't have an account?
 
-                    <a href="register.html">
+                    <a href="register.jsp">
                         Register
                     </a>
 

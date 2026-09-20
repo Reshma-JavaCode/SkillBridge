@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +149,7 @@
 
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.jsp">
                 SkillBridge
             </a>
 
@@ -165,7 +167,7 @@
                 <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link active" href="index.jsp">Home</a>
                     </li>
 
                     <li class="nav-item">
@@ -173,11 +175,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="login.jsp">Login</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="register.html">Register</a>
+                        <a class="nav-link" href="register.jsp">Register</a>
                     </li>
 
                 </ul>
@@ -213,7 +215,7 @@
 
         <div class="mt-4">
 
-            <a href="register.html" class="btn btn-primary btn-lg me-2">
+            <a href="register.jsp" class="btn btn-primary btn-lg me-2">
                 Get Started
             </a>
 
