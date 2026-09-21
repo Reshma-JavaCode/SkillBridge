@@ -27,7 +27,9 @@ public class SkillsServlet extends HttpServlet {
 		SkillDAO sd=new SkillDAO();
 		
 		 List<SkillModel> list = sd.getAllSkills();
+		 System.out.println("Skills are:");
 		 System.out.println(list);
+		 System.out.println();
 		
 		request.setAttribute("skillsList", list);
 		RequestDispatcher rd=request.getRequestDispatcher("skills.jsp");

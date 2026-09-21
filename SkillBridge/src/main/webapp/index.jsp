@@ -219,7 +219,7 @@
                 Get Started
             </a>
 
-            <a href="#skills" class="btn btn-outline-light btn-lg">
+            <a href="SkillsServlet" class="btn btn-outline-light btn-lg">
                 Explore Skills
             </a>
 

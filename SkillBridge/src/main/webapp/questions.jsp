@@ -35,17 +35,12 @@
 
 body {
     margin: 0;
-            min-height: 100vh;
-
-            background:
-                linear-gradient(rgba(0, 0, 0, 0.65),
-                        rgba(0, 0, 0, 0.65)),
-        url("images/hero2.avif");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        
-        color: white;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("images/hero2.avif");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+   	color: white;
 }
 
 /* Navbar */
@@ -192,8 +187,15 @@ body {
         <p>Test your knowledge</p>
 
     </div>
+     <% String email= (String)session.getAttribute("email");%>
+	<form action="PracticeServlet" method="post" name="Questions" class="form-group">
 
-
+	<input type="hidden" name="skillId"
+       value="<%= request.getAttribute("skillId") %>">
+       
+       <input type="hidden" name="email"
+       value="<%= email %>">
+     
     <%
         for(QuestionModel q : list)
         {
@@ -206,15 +208,15 @@ body {
         </h5>
 
         <div class="option">
-            <input type="radio"
+            <input type="radio" class="from-control"
                    name="question<%= q.getQuestionId() %>"
-                   value="A">
+                   value="A" required>
 
             A. <%= q.getOptionA() %>
         </div>
 
         <div class="option">
-            <input type="radio"
+            <input type="radio" class="from-control"
                    name="question<%= q.getQuestionId() %>"
                    value="B">
 
@@ -222,7 +224,7 @@ body {
         </div>
 
         <div class="option">
-            <input type="radio"
+            <input type="radio" class="from-control"
                    name="question<%= q.getQuestionId() %>"
                    value="C">
 
@@ -230,7 +232,7 @@ body {
         </div>
 
         <div class="option">
-            <input type="radio"
+            <input class="from-control" type="radio"
                    name="question<%= q.getQuestionId() %>"
                    value="D">
 
@@ -245,11 +247,12 @@ body {
 
     <div class="text-center mb-5">
 
-        <button type="button" class="btn btn-light">
+        <button type="submit" class="btn btn-light">
             Submit
         </button>
 
     </div>
+    </form>
 
 </div>
 

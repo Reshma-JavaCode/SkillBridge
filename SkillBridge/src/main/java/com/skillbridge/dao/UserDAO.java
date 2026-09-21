@@ -83,9 +83,10 @@ public class UserDAO {
 				if(rs.next())
 				{
 					u=new UserModel();
+					u.setUserId(rs.getInt("user_id"));
 					u.setUsername(rs.getString("username"));
-					u.setFirstname(rs.getString("firstname"));
-					u.setLastname(rs.getString("lastname"));
+					u.setFirstname(rs.getString("first_name"));
+					u.setLastname(rs.getString("last_name"));
 					u.setMobile(rs.getString("mobile"));
 					u.setEmail(email);
 					u.setPassword(rs.getString("password"));
@@ -101,4 +102,35 @@ public class UserDAO {
 		return u;
 	}
 
+	
+	public boolean updateProfile(UserModel um)
+	{
+		String query="update users set username=?,first_name=?,last_name=?,email=?,mobile=? where user_id=?";
+		
+		try{
+			Connection con=DBConnection.getConnection();
+		
+				
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.setString(1, um.getUsername());
+			ps.setString(2,um.getFirstname());
+			ps.setString(3, um.getLastname());
+			ps.setString(4, um.getEmail());
+			ps.setString(5, um.getMobile());
+			ps.setInt(6, um.getUserId());
+			
+			int row= ps.executeUpdate();
+			if(row>0)
+			{
+				status=true;
+			}
+				
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
 }

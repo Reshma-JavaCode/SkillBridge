@@ -2,6 +2,7 @@ package com.skillbridge.model;
 
 public class UserModel {
 
+	private int userId;
 	private String username;
 	private String firstname;
 	private String lastname;
@@ -22,6 +23,14 @@ public class UserModel {
 		this.email = email;
 		this.mobile = mobile;
 		this.password = password;
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -74,7 +83,7 @@ public class UserModel {
 
 	@Override
 	public String toString() {
-		return "UserModel [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
+		return "UserModel [userid= " +userId+", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
 				+ email + ", mobile=" + mobile + ", password=" + password + "]";
 	}
 	

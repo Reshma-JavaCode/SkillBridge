@@ -20,13 +20,17 @@ public class QuestionServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String skillId = (request.getParameter("skillId"));
+		String skillId = request.getParameter("skillId");
 		int skillId1=Integer.parseInt(skillId);
 	QuestionDAO qd=new QuestionDAO();
 	List<QuestionModel> list= qd.getQuestionsBySkillId(skillId1);
+	
+	System.out.println("Questions are:");
 	System.out.println(list);
+	System.out.println();
 	
 	request.setAttribute("questions", list);
+	request.setAttribute("skillId", skillId1);
 	RequestDispatcher rd=request.getRequestDispatcher("questions.jsp");
 	rd.forward(request, response);
 

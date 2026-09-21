@@ -180,13 +180,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
+                    <a class="nav-link text-white" href="SkillsServlet">
                         Practice
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
+                    <a class="nav-link text-white" href="ProgressServlet">
                         Progress
                     </a>
                 </li>
@@ -267,7 +267,7 @@
                     to improve your preparation.
                 </p>
 
-                <a href="#" class="btn btn-light">
+                <a href="SkillsServlet" class="btn btn-light">
                     Start Practice
                 </a>
 
@@ -286,7 +286,7 @@
                     progress.
                 </p>
 
-                <a href="#" class="btn btn-light">
+                <a href="ProgressServlet" class="btn btn-light">
                     View Progress
                 </a>
 
@@ -305,7 +305,7 @@
                     profile.
                 </p>
 
-                <a href="#" class="btn btn-light">
+                <a href="ProfileServlet" class="btn btn-light">
                     View Profile
                 </a>
 

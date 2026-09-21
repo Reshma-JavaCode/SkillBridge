@@ -84,5 +84,34 @@ public class QuestionDAO {
 		
 		return list;
 	}
+	
+	public String getCorrectAnswerByQuestionId(int questionId)
+	{
+		String query="select correct_answer from questions where question_id=?";
+		//List<QuestionModel> list=new ArrayList<>();
+		String correctAnswer=null;
+	
+		try
+		{
+			Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.setInt(1, questionId);
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next())
+			{
+				
+				correctAnswer=rs.getString("correct_answer");
+			}				
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		return correctAnswer;
+	
+	}
 
 }
