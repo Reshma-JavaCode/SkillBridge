@@ -7,12 +7,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import com.skillbridge.dao.ProgressDAO;
 import com.skillbridge.dao.QuestionDAO;
 import com.skillbridge.dao.UserDAO;
 import com.skillbridge.model.ProgressModel;
+import com.skillbridge.model.QuestionModel;
 import com.skillbridge.model.UserModel;
 
 
@@ -24,6 +27,7 @@ public class PracticeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		Enumeration<String> parameterNames = request.getParameterNames();//q1,2,3,...
+		//List<QuestionModel> answerList = new ArrayList<>();
 		
 		int score=0;
 		int totalQuestions=0;
@@ -51,6 +55,18 @@ public class PracticeServlet extends HttpServlet {
 			if(correctAnswer.equals(answer))
 			{
 				score++;
+				///* Get complete question */
+				/*List<QuestionModel> questions= qd.getQuestionsBySkillId(Integer.parseInt(skillId));
+				for(QuestionModel q : questions)
+				{
+				    if(q.getQuestionId() == questionId1)
+				    {
+				        q.setUserAnswer(answer);
+				        answerList.add(q);
+				        break;
+				    }
+				}*/
+			
 			}
 			totalQuestions++;
 		}

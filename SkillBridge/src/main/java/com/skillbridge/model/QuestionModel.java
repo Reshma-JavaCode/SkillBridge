@@ -10,6 +10,9 @@ public class QuestionModel {
     private String optionC;
     private String optionD;
     private String correctAnswer;
+    
+    private String userAnswer;
+	
 
     public QuestionModel() {
     }
@@ -92,6 +95,14 @@ public class QuestionModel {
         this.correctAnswer = correctAnswer;
     }
 
+    
+    public String getUserAnswer() {
+		return userAnswer;
+	}
+	public void setUserAnswer(String userAnswer) {
+		this.userAnswer = userAnswer;
+	}
+	
 	@Override
 	public String toString() {
 		return "QuestionModel [questionId=" + questionId + ", skillId=" + skillId + ", questionText=" + questionText

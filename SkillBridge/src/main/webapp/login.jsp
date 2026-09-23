@@ -15,23 +15,42 @@
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
-
+    <link rel="stylesheet" href="css/navbar1.css">
+   
     <style>
 
-        body {
-            background: #f5f7fa;
+         body {
+             min-height: 100vh;
+
+    background-image:
+        linear-gradient(rgba(105, 105, 135, 0.5),
+                        rgba(105, 105, 180, 0.5)),
+        url("images/hero2.avif");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
         }
 
         .login-container {
             max-width: 650px;
             margin: 50px auto;
+            color:white;
         }
 
         .login-card {
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            background: white;
+            
+   
+    background: rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(3px);
+
+
         }
 
         .login-card h2 {
@@ -53,7 +72,7 @@
 </head>
 
 <body>
-
+<%@ include file="navbar1.jsp" %>
     <!-- Login Container -->
 
     <div class="container login-container">
@@ -135,6 +154,10 @@
         </div>
 
     </div>
+    <!-- Bootstrap 5 JavaScript -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
 
